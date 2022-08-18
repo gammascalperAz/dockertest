@@ -39,17 +39,17 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-      name: Build and push
+
+    - name: Build and push
       uses: docker/build-push-action@v3
       with:
         context: .
         push: true
         tags: user/app:latest
-      -
-      name: Update repo description
+        
+    - name: Update repo description
       uses: peter-evans/dockerhub-description@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        repository: gammascalper/pipeline
+        repository: user/app
