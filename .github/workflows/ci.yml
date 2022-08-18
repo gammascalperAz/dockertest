@@ -28,10 +28,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Build and Push Docker Image1
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: gammascalper/pipeline
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v5
+    name: Build & push Docker image
+    with:
+      image: repo/image
+      tags: v1, latest
+      registry: docker.io
+      dockerfile: Dockerfile.ci
+      username: ${{ secrets.DOCKER_USERNAME }}
+      password: ${{ secrets.DOCKER_PASSWORD }}
